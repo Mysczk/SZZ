@@ -1,0 +1,30 @@
+services:
+
+  php:
+    build: .
+    container_name: todo-php
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/app          # live reload – změna souboru se projeví okamžitě
+    working_dir: /app
+    command: php -S 0.0.0.0:8080
+    depends_on:
+      - postgres
+    restart: always
+
+  postgres:
+    image: postgres:16
+    container_name: todo-postgres
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: heslo
+      POSTGRES_DB: todo
+    ports:
+      - "5433:5432"     # 5433 aby nekolidoval s globálním postgres na 5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: always
+
+volumes:
+  pgdata:

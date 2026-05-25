@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="tasks">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="task" type="TaskType"
+                    minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="TaskType">
+    <xs:sequence>
+      <xs:element name="title"    type="xs:string"/>
+      <xs:element name="category" type="CategoryEnum"/>
+      <xs:element name="status"   type="StatusEnum"/>
+      <xs:element name="desc"     type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="CategoryEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="prace"/>
+      <xs:enumeration value="osobni"/>
+      <xs:enumeration value="studium"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="StatusEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="nezahajeno"/>
+      <xs:enumeration value="zahajeno"/>
+      <xs:enumeration value="dokonceno"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>
