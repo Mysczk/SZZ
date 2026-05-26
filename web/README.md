@@ -6,6 +6,7 @@
 ---
 
 ## Obsah
+0. [Rychlý start](#0-rychlý-start--spuštění-prostředí)
 1. [XML – základy a struktura](#1-xml--základy-a-struktura)
 2. [XSD – validace XML](#2-xsd--validace-xml)
 3. [PHP a XML – čtení a zápis](#3-php-a-xml--čtení-a-zápis)
@@ -19,6 +20,39 @@
 
 ---
 
+## 0. Rychlý start – spuštění prostředí
+
+### 1. Spusť kontejnery
+```bash
+docker-compose up -d --build
+```
+
+### 2. Ověř že běží
+```bash
+docker ps
+# → todo-php (port 8080) + todo-postgres (port 5433)
+```
+
+### 3. Otevři v prohlížeči
+```
+http://localhost:8080/index.php
+```
+
+### Připojení do DB (DBeaver)
+```
+Host:     localhost
+Port:     5433
+User:     app
+Password: heslo
+Database: todo
+```
+
+### Zastavení
+```bash
+docker-compose down
+```
+
+---
 ## 1. XML – základy a struktura
 
 ```xml

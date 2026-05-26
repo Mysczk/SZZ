@@ -5,6 +5,7 @@
 ---
 
 ## Obsah
+0. [Rychlý start](#0-rychlý-start--spuštění-prostředí)
 1. [SQL vs NoSQL – kdy co zvolit](#1-sql-vs-nosql--kdy-co-zvolit)
 2. [Dokumentový model – návrh struktury](#2-dokumentový-model--návrh-struktury)
 3. [Připojení a vytvoření databáze](#3-připojení-a-vytvoření-databáze)
@@ -18,6 +19,41 @@
 
 ---
 
+## 0. Rychlý start – spuštění prostředí
+
+### 1. Spusť MongoDB v Dockeru
+```bash
+docker run -d \
+  --name mongo \
+  --restart always \
+  -p 27017:27017 \
+  mongo
+```
+
+### 2. Ověř že běží
+```bash
+docker ps
+# → měl by být vidět kontejner "mongo"
+```
+
+### 3. Nainstaluj Python závislosti
+```bash
+pip install pymongo pandas matplotlib pycountry
+```
+
+### 4. Ověř připojení
+```python
+from pymongo import MongoClient
+client = MongoClient("mongodb://localhost:27017/")
+print(client.list_database_names())
+```
+
+### Připojení (MongoDB Compass / mongosh)
+```
+URI: mongodb://localhost:27017
+```
+
+---
 ## 1. SQL vs NoSQL – kdy co zvolit
 
 ### Hodnocení výhod/nevýhod pro otázku u zkoušky

@@ -10,6 +10,7 @@
 ---
 
 ## Obsah
+0. [Rychlý start](#0-rychlý-start--spuštění-prostředí)
 1. [Projekt – setup a struktura](#1-projekt--setup-a-struktura)
 2. [Základy React Native](#2-základy-react-native)
 3. [Navigace – dvě aktivity (obrazovky)](#3-navigace--dvě-aktivity-obrazovky)
@@ -22,6 +23,54 @@
 
 ---
 
+## 0. Rychlý start – spuštění prostředí
+
+### Požadavky
+- Node.js >= 22.13.0
+- Expo Go na iPhonu (App Store)
+
+### 1. Vytvoř projekt
+```bash
+npx create-expo-app nazev-projektu
+cd nazev-projektu
+```
+> Při výběru šablony zvol **"For learning with Expo Go (SDK 54)"**
+
+### 2. Nainstaluj závislosti
+```bash
+npx expo install expo-sqlite expo-location expo-sensors
+```
+
+### 3. Spusť projekt
+```bash
+npx expo start
+```
+Naskenuj QR kód v Expo Go na iPhonu.
+
+### 4. Přidání dalších balíčků
+```bash
+# Expo balíčky (správná verze pro SDK)
+npx expo install název-balíčku
+
+# Ostatní npm balíčky
+npm install název-balíčku
+```
+
+### Struktura projektu
+```
+app/            ← obrazovky (expo-router)
+services/       ← logika (databáze, API)
+hooks/          ← custom hooks
+components/     ← znovupoužitelné komponenty
+```
+
+### Časté příkazy
+```bash
+npx expo start          # spuštění
+npx expo start --clear  # spuštění s vymazáním cache
+```
+
+---
 ## 1. Projekt – setup a struktura
 
 ```bash

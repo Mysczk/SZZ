@@ -5,6 +5,7 @@
 ---
 
 ## Obsah
+0. [Rychlý start](#0-rychlý-start--spuštění-prostředí)
 1. [Logický návrh & normalizace](#1-logický-návrh--normalizace)
 2. [Fyzický návrh – CREATE TABLE](#2-fyzický-návrh--create-table)
 3. [Manipulace s daty – INSERT INTO](#3-manipulace-s-daty--insert-into)
@@ -21,6 +22,35 @@
 
 ---
 
+## 0. Rychlý start – spuštění prostředí
+
+### 1. Spusť PostgreSQL v Dockeru
+```bash
+docker run -d \
+  --name postgres \
+  --restart always \
+  -e POSTGRES_PASSWORD=heslo \
+  -e POSTGRES_USER=postgres \
+  -p 5432:5432 \
+  postgres
+```
+
+### 2. Ověř že běží
+```bash
+docker ps
+# → měl by být vidět kontejner "postgres"
+```
+
+### Připojení do DB (DBeaver / psql)
+```
+Host:     localhost
+Port:     5432
+User:     postgres
+Password: heslo
+Database: postgres
+```
+
+---
 ## 1. Logický návrh & Normalizace
 
 ### Relační vztahy
