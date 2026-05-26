@@ -1,7 +1,6 @@
 .venv
 *.png
 *.csv
-*.csproj
 *.db
 obj
 bin
