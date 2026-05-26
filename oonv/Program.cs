@@ -1,4 +1,4 @@
-using oonv.Patterns;
+﻿using oonv.Patterns;
 
 while (true)
 {

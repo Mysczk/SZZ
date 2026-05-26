@@ -6,6 +6,7 @@
 ---
 
 ## Obsah
+0. [Rychlý start](#0-rychlý-start--spuštění-prostředí)
 1. [Typový systém C# – přehled](#1-typový-systém-c--přehled)
 2. [Polymorfismus – rozhraní vs dědičnost](#2-polymorfismus--rozhraní-vs-dědičnost)
 3. [Vytvářející vzory – Singleton, Factory Method, Prototype](#3-vytvářející-vzory)
@@ -13,6 +14,29 @@
 5. [Vzory chování – Command, Observer, Iterator, Memento, Strategy](#5-vzory-chování)
 6. [Diagramy tříd – UML notace](#6-diagramy-tříd--uml-notace)
 7. [Testování – xUnit](#7-testování--xunit)
+
+---
+
+## 0. Rychlý start – spuštění prostředí
+
+### 1. Vytvoř projekt
+```bash
+dotnet new console -n oonv --framework net8.0
+cd oonv
+mkdir Patterns
+```
+
+### 2. Spusť projekt
+```bash
+dotnet run
+```
+
+### Přidání xUnit testů
+```bash
+dotnet new xunit -n oonv.Tests
+dotnet add oonv.Tests reference ../oonv/oonv.csproj
+dotnet test
+```
 
 ---
 
