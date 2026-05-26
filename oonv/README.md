@@ -38,6 +38,57 @@ dotnet add oonv.Tests reference ../oonv/oonv.csproj
 dotnet test
 ```
 
+### SQLite – přidání do projektu
+```bash
+dotnet add package Microsoft.Data.Sqlite
+```
+
+```csharp
+using Microsoft.Data.Sqlite;
+
+var db = new SqliteConnection("Data Source=app.db");
+db.Open();
+
+// CREATE
+var cmd = db.CreateCommand();
+cmd.CommandText = """
+    CREATE TABLE IF NOT EXISTS Items (
+        Id   INTEGER PRIMARY KEY AUTOINCREMENT,
+        Name TEXT NOT NULL
+    );
+    """;
+cmd.ExecuteNonQuery();
+
+// INSERT – vždy parametry, nikdy string concatenation
+cmd.CommandText = "INSERT INTO Items (Name) VALUES ($name); SELECT last_insert_rowid();";
+cmd.Parameters.AddWithValue("$name", "Test");
+int newId = Convert.ToInt32(cmd.ExecuteScalar());
+
+// SELECT
+cmd.CommandText = "SELECT * FROM Items;";
+cmd.Parameters.Clear();
+using var reader = cmd.ExecuteReader();
+while (reader.Read())
+    Console.WriteLine($"{reader.GetInt32(0)}: {reader.GetString(1)}");
+
+// UPDATE
+cmd.CommandText = "UPDATE Items SET Name=$name WHERE Id=$id;";
+cmd.Parameters.AddWithValue("$name", "Změněno");
+cmd.Parameters.AddWithValue("$id", newId);
+cmd.ExecuteNonQuery();
+
+// DELETE
+cmd.CommandText = "DELETE FROM Items WHERE Id=$id;";
+cmd.Parameters.AddWithValue("$id", newId);
+cmd.ExecuteNonQuery();
+
+db.Close();
+```
+
+> `ExecuteNonQuery()` → INSERT/UPDATE/DELETE  
+> `ExecuteScalar()` → jeden výsledek (COUNT, last_insert_rowid)  
+> `ExecuteReader()` → více řádků
+
 ---
 
 ## 1. Typový systém C# – přehled
